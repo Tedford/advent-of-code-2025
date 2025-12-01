@@ -1,0 +1,12 @@
+[package]
+name = "aoc"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+reqwest = { version="0.12.9", features = ["cookies"] }
+tokio = {version="1.41.1", features=["full"]}
+ctor = "0.1.19"
+
+[dev-dependencies]
+mockito = "1.6.1"
