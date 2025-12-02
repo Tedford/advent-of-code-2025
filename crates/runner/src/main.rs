@@ -63,6 +63,7 @@ async fn main() {
             let start_time = std::time::Instant::now();
             let (part1, part2) = match day {
                 1 => (day1::part1(&lines), day1::part2(&lines)),
+                2 => (day2::part1(&lines), day2::part2(&lines)),
                 _ => {
                     println!("Day {} not implemented", day);
                     process::exit(3);

@@ -8,5 +8,6 @@ build = "build.rs"
 getopts = "*"
 aoc = { path = "../aoc" }
 day1 = { path = "../day1" }
+day2 = { path = "../day2" }
 tokio = { version = "1.41.1", features = ["full"] }
 url = "2.5.4"
