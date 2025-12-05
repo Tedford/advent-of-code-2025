@@ -10,5 +10,6 @@ aoc = { path = "../aoc" }
 day1 = { path = "../day1" }
 day2 = { path = "../day2" }
 day3 = { path = "../day3" }
+day4 = { path = "../day4" }
 tokio = { version = "1.41.1", features = ["full"] }
 url = "2.5.4"

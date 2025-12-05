@@ -65,6 +65,7 @@ async fn main() {
                 1 => (day1::part1(&lines), day1::part2(&lines)),
                 2 => (day2::part1(&lines), day2::part2(&lines)),
                 3 => (day3::part1(&lines), day3::part2(&lines)),
+                4 => (day4::part1(&lines), day4::part2(&lines)),
                 _ => {
                     println!("Day {} not implemented", day);
                     process::exit(3);
