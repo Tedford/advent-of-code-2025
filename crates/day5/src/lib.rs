@@ -1,5 +1,3 @@
-// use std::collections::HashSet;
-
 #[derive(Debug, Clone)]
 struct Lot {
     start: i64,
@@ -60,6 +58,9 @@ fn condense_ranges(lots: &Vec<Lot>) -> (bool, Vec<Lot>) {
     for lot in lots {
         let mut covered = false;
 
+        // Lot { start: 81390076677485, end: 84906945855948 }
+        // Lot { start: 84906945855949, end: 87470249967947 }
+
         for i in 0..new_lots.len() {
             let l2 = &new_lots[i];
 
@@ -69,7 +70,7 @@ fn condense_ranges(lots: &Vec<Lot>) -> (bool, Vec<Lot>) {
                 covered = true;
                 modified = true;
                 break;
-            } else if l2.start <= lot.start && l2.end > lot.start && l2.end <= lot.end {
+            } else if l2.start <= lot.start && l2.end + 1 >= lot.start && l2.end <= lot.end {
                 // extends the range to the right
                 let l = Lot {
                     start: l2.start,
@@ -80,7 +81,7 @@ fn condense_ranges(lots: &Vec<Lot>) -> (bool, Vec<Lot>) {
                 covered = true;
                 new_lots[i] = l;
                 break;
-            } else if lot.start <= l2.start && l2.start <= lot.end && lot.end <= l2.end {
+            } else if lot.start <= l2.start && l2.start - 1 <= lot.end && lot.end <= l2.end {
                 // extends the range to the left
                 let l = Lot {
                     start: lot.start,
@@ -101,12 +102,11 @@ fn condense_ranges(lots: &Vec<Lot>) -> (bool, Vec<Lot>) {
     (modified, new_lots)
 }
 
-// 552728275049930 too high
-// 355739580603763 too high
 pub fn part2(input: &Vec<String>) -> i64 {
     let inventory = parse(input);
 
     let mut lots = inventory.fresh;
+    lots.sort_by_key(|l| l.start);
     let mut compacting = true;
 
     while compacting {
@@ -115,7 +115,11 @@ pub fn part2(input: &Vec<String>) -> i64 {
         compacting = modified;
     }
 
-    println!("{:?}", lots);
+    //println!("{:?}", lots);
+    lots.sort_by_key(|l| l.start);
+    for l in &lots {
+        println!("{:?}", l);
+    }
 
     lots.iter().map(|lot| lot.end - lot.start + 1).sum::<i64>()
 }
